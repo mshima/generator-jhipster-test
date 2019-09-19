@@ -39,20 +39,222 @@ jobs:
           JHI_E2E_HEADLESS: true
           JHI_SCRIPTS: $(Build.Repository.LocalPath)/test-integration/scripts
           NG_CLI_ANALYTICS: false
+          # Blueprint defaults
+          BLUEPRINT_BUILD: true
+          BLUEPRINT_NAME: generator-jhipster-test
+          BLUEPRINT_GLOBAL: false
+          BLUEPRINT_FIX_VERSION: false
+          BLUEPRINT_RUN_NPM: false
+          BLUEPRINT_INSTALL_ESLINT: false
+          BLUEPRINT_LINK: false
 
       strategy:
           matrix:
-              jdl-default:
+              no-blueprint-jdl-default:
                   JHI_APP: jdl-default
                   JHI_ENTITY: jdl
                   JHI_PROFILE: prod
                   JHI_PROTRACTOR: 1
-              jdl-default-jdk8:
+                  BLUEPRINT_BUILD: false
+              no-blueprint-jdl-default-jdk8:
                   JHI_APP: jdl-default
                   JHI_ENTITY: jdl
                   JHI_PROFILE: prod
                   JHI_PROTRACTOR: 1
                   JHI_JDK: 8
+                  BLUEPRINT_BUILD: false
+
+              #BLUEPRINT global installation
+              global:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_GLOBAL: true
+                  BLUEPRINT_FIX_VERSION: false
+                  BLUEPRINT_RUN_NPM: false
+                  BLUEPRINT_INSTALL_ESLINT: false
+              global-ver_fix:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_GLOBAL: true
+                  BLUEPRINT_FIX_VERSION: true
+                  BLUEPRINT_RUN_NPM: false
+                  BLUEPRINT_INSTALL_ESLINT: false
+              global-eslint:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_GLOBAL: true
+                  BLUEPRINT_FIX_VERSION: false
+                  BLUEPRINT_RUN_NPM: false
+                  BLUEPRINT_INSTALL_ESLINT: true
+              global-ver_fix-eslint:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_GLOBAL: true
+                  BLUEPRINT_FIX_VERSION: true
+                  BLUEPRINT_RUN_NPM: false
+                  BLUEPRINT_INSTALL_ESLINT: true
+              global-npm_i:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_GLOBAL: true
+                  BLUEPRINT_FIX_VERSION: false
+                  BLUEPRINT_RUN_NPM: true
+              global-ver_fix-npm_i:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_GLOBAL: true
+                  BLUEPRINT_FIX_VERSION: true
+                  BLUEPRINT_RUN_NPM: true
+
+              #BLUEPRINT local installation
+              local:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: false
+                  BLUEPRINT_RUN_NPM: false
+              local-ver_fix:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: true
+                  BLUEPRINT_RUN_NPM: false
+              local-npm_i:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: false
+                  BLUEPRINT_RUN_NPM: true
+              local-ver_fix-npm_i:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: true
+                  BLUEPRINT_RUN_NPM: true
+
+              #BLUEPRINT link global installation
+              link_global:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: false
+                  BLUEPRINT_RUN_NPM: false
+                  BLUEPRINT_GLOBAL: true
+                  BLUEPRINT_LINK: true
+              link_global-ver_fix:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: true
+                  BLUEPRINT_RUN_NPM: false
+                  BLUEPRINT_GLOBAL: true
+                  BLUEPRINT_LINK: true
+              link_global-npm_i:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: false
+                  BLUEPRINT_RUN_NPM: true
+                  BLUEPRINT_GLOBAL: true
+                  BLUEPRINT_LINK: true
+              link_global-ver_fix-npm_i:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: true
+                  BLUEPRINT_RUN_NPM: true
+                  BLUEPRINT_GLOBAL: true
+                  BLUEPRINT_LINK: true
+
+              #BLUEPRINT link local installation
+              link_local:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: false
+                  BLUEPRINT_RUN_NPM: false
+                  BLUEPRINT_LINK: true
+              link_local-ver_fix:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: true
+                  BLUEPRINT_RUN_NPM: false
+                  BLUEPRINT_LINK: true
+              link_local-npm_i:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: false
+                  BLUEPRINT_RUN_NPM: true
+                  BLUEPRINT_LINK: true
+              link_local-ver_fix-npm_i:
+                  JHI_APP: jdl-default
+                  JHI_ENTITY: other
+                  JHI_PROFILE: prod
+                  JHI_PROTRACTOR: 1
+                  JHI_GEN_BRANCH: release
+                  BLUEPRINT_ENTITY: jdl
+                  BLUEPRINT_FIX_VERSION: true
+                  BLUEPRINT_RUN_NPM: true
+                  BLUEPRINT_LINK: true
 
       steps:
           #----------------------------------------------------------------------
@@ -98,8 +300,12 @@ jobs:
             displayName: 'GENERATION: install JHipster'
           - bash: $(JHI_SCRIPTS)/11-generate-entities.sh
             displayName: 'GENERATION: entities'
+          - bash: $(JHI_SCRIPTS)/11.1-pre-generate-project.sh
+            displayName: 'GENERATION: pre project'
           - bash: $(JHI_SCRIPTS)/12-generate-project.sh
             displayName: 'GENERATION: project'
+          - bash: $(JHI_SCRIPTS)/12.1-post-generate-project.sh
+            displayName: 'GENERATION: post project'
           - bash: $(JHI_SCRIPTS)/13-replace-version-generated-project.sh
             displayName: 'GENERATION: replace version in generated project'
           - bash: $(JHI_SCRIPTS)/14-jhipster-info.sh
