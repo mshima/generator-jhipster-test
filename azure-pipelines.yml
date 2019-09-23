@@ -45,7 +45,6 @@ jobs:
           BLUEPRINT_GLOBAL: false
           BLUEPRINT_FIX_VERSION: false
           BLUEPRINT_RUN_NPM: false
-          BLUEPRINT_INSTALL_ESLINT: false
           BLUEPRINT_LINK: false
 
       strategy:
@@ -75,7 +74,6 @@ jobs:
                   BLUEPRINT_GLOBAL: true
                   BLUEPRINT_FIX_VERSION: false
                   BLUEPRINT_RUN_NPM: false
-                  BLUEPRINT_INSTALL_ESLINT: false
               global-ver_fix:
                   JHI_APP: jdl-default
                   JHI_ENTITY: other
@@ -86,29 +84,6 @@ jobs:
                   BLUEPRINT_GLOBAL: true
                   BLUEPRINT_FIX_VERSION: true
                   BLUEPRINT_RUN_NPM: false
-                  BLUEPRINT_INSTALL_ESLINT: false
-              global-eslint:
-                  JHI_APP: jdl-default
-                  JHI_ENTITY: other
-                  JHI_PROFILE: prod
-                  JHI_PROTRACTOR: 1
-                  JHI_GEN_BRANCH: release
-                  BLUEPRINT_ENTITY: jdl
-                  BLUEPRINT_GLOBAL: true
-                  BLUEPRINT_FIX_VERSION: false
-                  BLUEPRINT_RUN_NPM: false
-                  BLUEPRINT_INSTALL_ESLINT: true
-              global-ver_fix-eslint:
-                  JHI_APP: jdl-default
-                  JHI_ENTITY: other
-                  JHI_PROFILE: prod
-                  JHI_PROTRACTOR: 1
-                  JHI_GEN_BRANCH: release
-                  BLUEPRINT_ENTITY: jdl
-                  BLUEPRINT_GLOBAL: true
-                  BLUEPRINT_FIX_VERSION: true
-                  BLUEPRINT_RUN_NPM: false
-                  BLUEPRINT_INSTALL_ESLINT: true
               global-npm_i:
                   JHI_APP: jdl-default
                   JHI_ENTITY: other
@@ -306,6 +281,8 @@ jobs:
             displayName: 'GENERATION: project'
           - bash: $(JHI_SCRIPTS)/12.1-post-generate-project.sh
             displayName: 'GENERATION: post project'
+          - bash: $(JHI_SCRIPTS)/12.2-verify-generate-project.sh
+            displayName: 'GENERATION: verify project'
           - bash: $(JHI_SCRIPTS)/13-replace-version-generated-project.sh
             displayName: 'GENERATION: replace version in generated project'
           - bash: $(JHI_SCRIPTS)/14-jhipster-info.sh
