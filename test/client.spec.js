@@ -41,6 +41,7 @@ describe('Subgenerator client of test JHipster blueprint', () => {
         it('it works', () => {
             // Adds your tests here
             assert.textEqual('Write your own tests!', 'Write your own tests!');
+            assert.file('dummy.txt');
         });
     });
 });
