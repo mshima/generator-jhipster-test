@@ -29,7 +29,6 @@ jobs:
           # if JHI_LIB_BRANCH value is release, use the release from Maven
           JHI_LIB_REPO: https://github.com/jhipster/jhipster.git
           JHI_LIB_BRANCH: release
-          JHI_VERSION: 3.0.6
           # if JHI_GEN_BRANCH value is release, use the release from NPM
           JHI_GEN_REPO: https://github.com/jhipster/generator-jhipster.git
           JHI_GEN_BRANCH: release
@@ -41,7 +40,8 @@ jobs:
           JHI_SCRIPTS: $(Build.Repository.LocalPath)/test-integration/scripts
           NG_CLI_ANALYTICS: false
 
-          JHI_GEN_VERSION: 6.4.0
+          JHI_VERSION: 3.0.6
+          JHI_GEN_VERSION: 6.4.1
           JHI_APP: jdl-default
           JHI_ENTITY: other
 
