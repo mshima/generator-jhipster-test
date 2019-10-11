@@ -52,6 +52,21 @@ else
     npm install "$JHI_HOME"
 fi
 
+cd "$JHI_HOME"
+npm info generator-jhipster version
+JHI_INSTALLED_VERSION=$(npm info generator-jhipster version)
+echo JHI_INSTALLED_VERSION="$JHI_INSTALLED_VERSION"
+
+if [[ $JHI_INSTALLED_VERSION == '' ]]; then
+    # Replace jhipster version with installed version
+    echo 'Fixing jhipster version'
+    echo `cat package.json | grep '"generator-jhipster"'`
+    sed -e 's#"generator-jhipster": ".*",#"generator-jhipster": "$JHI_INSTALLED_VERSION",#1;' package.json > package.json.sed
+    mv -f package.json.sed package.json
+    echo 'Fixed jhipster version'
+    echo `cat package.json | grep '"generator-jhipster"'`
+fi
+
 #-------------------------------------------------------------------------------
 # Check folder where the app is generated
 #-------------------------------------------------------------------------------
