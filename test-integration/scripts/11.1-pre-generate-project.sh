@@ -15,6 +15,16 @@ fi
 mkdir -p "$JHI_FOLDER_APP"
 cd "$JHI_HOME"
 
+if [[ !$BLUEPRINT_PEER && "$JHI_GEN_BRANCH" == "release" && "$JHI_GEN_VERSION" != "" ]]; then
+    # Replace version (latest) with local path
+    echo 'Fixing jhipster version'
+    echo $(cat package.json | grep '"generator-jhipster"')
+    sed -e 's%"generator-jhipster": ".*",%"generator-jhipster": "'$JHI_GEN_VERSION'",%1;' package.json > package.json.sed
+    mv -f package.json.sed package.json
+    echo 'Fixed blueprint version'
+    echo $(cat package.json | grep '"generator-jhipster"')
+fi
+
 if $BLUEPRINT_LINK && $BLUEPRINT_GLOBAL; then
     echo "*** Link blueprint globally"
     npm link
@@ -50,6 +60,21 @@ else
 
     # Install blueprint
     npm install "$JHI_HOME"
+fi
+
+cd "$JHI_HOME"
+# JHI_INSTALLED_VERSION=$(node -p "require('./package.json').version")
+JHI_INSTALLED_VERSION=$(npm ll -pg --depth=0 generator-jhipster | grep -o "@.*:" | sed 's/.$//; s/^.//')
+echo JHI_INSTALLED_VERSION="$JHI_INSTALLED_VERSION"
+
+if [[ !$BLUEPRINT_PEER && $JHI_INSTALLED_VERSION != '' ]]; then
+    # Replace jhipster version with installed version
+    echo 'Fixing jhipster version'
+    echo `cat package.json | grep '"generator-jhipster"'`
+    sed -e 's#"generator-jhipster": ".*",#"generator-jhipster": "'$JHI_INSTALLED_VERSION'",#1;' package.json > package.json.sed
+    mv -f package.json.sed package.json
+    echo 'Fixed jhipster version'
+    echo `cat package.json | grep '"generator-jhipster"'`
 fi
 
 #-------------------------------------------------------------------------------

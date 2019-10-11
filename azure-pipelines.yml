@@ -53,6 +53,7 @@ jobs:
           BLUEPRINT_RUN_NPM: false
           BLUEPRINT_LINK: false
           BLUEPRINT_ENTITY: jdl
+          BLUEPRINT_PEER: false
 
           DEBUG: yeoman:*
 
