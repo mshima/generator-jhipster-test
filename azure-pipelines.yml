@@ -58,14 +58,9 @@ jobs:
 
       strategy:
           matrix:
-              no-blueprint-jdl-default:
+              no-blueprint-jdl-default (baseline):
                   JHI_ENTITY: jdl
                   JHI_PROFILE: prod
-                  BLUEPRINT_BUILD: false
-              no-blueprint-jdl-default-jdk8:
-                  JHI_ENTITY: jdl
-                  JHI_PROFILE: prod
-                  JHI_JDK: 8
                   BLUEPRINT_BUILD: false
 
               #BLUEPRINT global installation
