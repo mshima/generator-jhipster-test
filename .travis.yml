@@ -5,7 +5,11 @@ node_js:
     - "10.16.3"
 before_install:
     - npm install -g npm
+    - npm install -g npm-install-peers
 install:
     - npm install
+    - npm-install-peers
 script:
     - npm test
+env:
+    - DEBUG=yeoman:*
