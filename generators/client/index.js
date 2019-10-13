@@ -1,7 +1,9 @@
 /* eslint-disable consistent-return */
 const chalk = require('chalk');
-const ClientGenerator = require('generator-jhipster/generators/client');
+const Environment = require('yeoman-environment');
 const writeFiles = require('./files').writeFiles;
+/* eslint-disable-next-line import/no-dynamic-require */
+const ClientGenerator = require(Environment.lookupGenerator('jhipster:client'));
 
 module.exports = class extends ClientGenerator {
     constructor(args, opts) {
