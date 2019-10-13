@@ -41,7 +41,7 @@ jobs:
           NG_CLI_ANALYTICS: false
 
           JHI_VERSION: 3.0.6
-          JHI_GEN_VERSION: "jhipster/generator-jhipster#master"
+          JHI_GEN_VERSION: "murdos/generator-jhipster#detect-blueprint-installed-globally"
           JHI_APP: jdl-default
           JHI_ENTITY: other
 
