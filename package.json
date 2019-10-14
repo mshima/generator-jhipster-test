@@ -38,7 +38,7 @@
     "semver": "^5.6.0",
     "shelljs": "^0.8.2",
     "through2": "^3.0.1",
-    "yeoman-environment": "mshima/environment#master",
+    "yeoman-environment": "^2.5.0",
     "yeoman-generator": "^3.2.0"
   },
   "peerDependencies": {
